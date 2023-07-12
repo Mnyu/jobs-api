@@ -24,7 +24,7 @@ app.set('trust proxy', 1);
 // middlewares
 app.use(
   rateLimiter({
-    windowMs: 16 * 60 * 1000, // 15 minutes
+    windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // limit each IP to 100 request per windowMs
   })
 );
