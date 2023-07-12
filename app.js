@@ -6,6 +6,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
 const connectDB = require('./db/connect');
+const authenticateUser = require('./middleware/authentication');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,7 @@ const port = process.env.PORT || 3000;
 // middlewares
 app.use(express.json()); // for reading req.body
 app.use('/api/v1/auth', authRouter); // routers
-app.use('/api/v1/jobs', jobsRouter); // routers
+app.use('/api/v1/jobs', authenticateUser, jobsRouter); // routers
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
